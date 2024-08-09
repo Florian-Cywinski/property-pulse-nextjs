@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Every global style would also go in here, e.g.
+div {
+    color: red;
+}
