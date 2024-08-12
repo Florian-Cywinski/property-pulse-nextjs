@@ -1,5 +1,6 @@
 import '@/assets/styles/globals.css';   // To have Tailwind working // @ points to the root directory
 import Navbar from '@/components/Navbar';   // To have it on every page
+import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'PropertyPulse',   // To add a title (tab)
@@ -15,6 +16,7 @@ const MainLayout = ({ children }) => {    // children is the prop pasted in (pag
         <main>
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );
