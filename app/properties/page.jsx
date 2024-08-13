@@ -1,8 +1,13 @@
-import properties from '@/properties.json'
 import PropertyCard from '@/components/PropertyCard';
+import Property from '@/models/Property';
+import connectDB from '@/config/database';
 
-const PropertiesPage = () => {
+const PropertiesPage = async () => {
   // console.log(properties);
+
+  // Fetch Properties
+  await connectDB();
+  const properties = await Property.find({}).lean();  // .find({}) to get all properties  // .lean() optimizes query performance by returning plain JS objects instead of mongoose documents (it's just for read only)
   
   return (
     <>
