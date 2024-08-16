@@ -12,26 +12,29 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   // const [isLoggedIn, setIsLoggedIn] = useState(true);  -> It's not needed anymore since now session is used
-
+  
   const pathname = usePathname(); // Initialization
-
+  
   const { data: session } = useSession(); // To get the data from useSession  // data: session to rename data to session
   const [providers, setProviders] = useState(null); // Here just one provider is used (Google)
-
+  
   useEffect(() => {
     const setAuthProviders = async () => {
       const res = await getProviders();
       setProviders(res);
     };
-
+    
     setAuthProviders();
-
+    
+    
     // NOTE: close mobile menu if the viewport size is changed
     window.addEventListener('resize', () => {
       setIsMobileMenuOpen(false);
     });
   }, []);
-
+  
+  const profileImage = session?.user?.image;  // ? To don't throw any errors if it is null (optional chaining)
+  
   return (
     <nav className='bg-blue-700 border-b border-blue-500'>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
@@ -171,8 +174,10 @@ const Navbar = () => {
                     <span className='sr-only'>Open user menu</span>
                     <Image
                       className='h-8 w-8 rounded-full'
-                      src={profileDefault}
+                      src={profileImage || profileDefault}
                       alt=''
+                      width={40}
+                      height={40}
                     />
                   </button>
                 </div>
