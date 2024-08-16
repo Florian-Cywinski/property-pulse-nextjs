@@ -34,7 +34,7 @@ const Navbar = () => {
   }, []);
   
   const profileImage = session?.user?.image;  // ? To don't throw any errors if it is null (optional chaining)
-  
+
   return (
     <nav className='bg-blue-700 border-b border-blue-500'>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
@@ -211,6 +211,10 @@ const Navbar = () => {
                       Saved Properties
                     </Link>
                     <button
+                      onClick={() => {
+                        setIsProfileMenuOpen(false);
+                        signOut({ callbackUrl: '/' });
+                      }}
                       className='block px-4 py-2 text-sm text-gray-700'
                       role='menuitem'
                       tabIndex='-1'
