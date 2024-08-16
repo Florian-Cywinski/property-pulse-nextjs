@@ -1,6 +1,9 @@
+'use client';
+import addProperty from '@/app/actions/addProperty';  // To import the form action (server-side function)
+
 const PropertyAddForm = () => {
   return (
-    <form>
+    <form action={addProperty}>
       <h2 className='text-3xl text-center font-semibold mb-6'>Add Property</h2>
 
       <div className='mb-4'>
