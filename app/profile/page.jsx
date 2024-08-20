@@ -3,7 +3,7 @@ import connectDB from '@/config/database';
 import Property from '@/models/Property';
 import { getSessionUser } from '@/utils/getSessionUser';
 import profileDefault from '@/assets/images/profile.png';
-// import ProfileProperties from '@/components/ProfileProperties';
+import ProfileProperties from '@/components/ProfileProperties';
 // import { convertToSerializeableObject } from '@/utils/convertToObject';
 
 const ProfilePage = async () => {
@@ -16,6 +16,10 @@ const ProfilePage = async () => {
   if (!userId) {
     throw new Error('User ID is required');
   }
+
+  const properties = await Property.find({ owner: userId }).lean();
+  console.log(properties);
+  
 
   // const propertiesDocs = await Property.find({ owner: userId }).lean();
   // const properties = propertiesDocs.map(convertToSerializeableObject);
@@ -49,11 +53,11 @@ const ProfilePage = async () => {
 
             <div className='md:w-3/4 md:pl-4'>
               <h2 className='text-xl font-semibold mb-4'>Your Listings</h2>
-              {/* {properties.length === 0 ? (
+              {properties.length === 0 ? (
                 <p>You have no property listings</p>
               ) : (
                 <ProfileProperties properties={properties} />
-              )} */}
+              )}
             </div>
           </div>
         </div>
