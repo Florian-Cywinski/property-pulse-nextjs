@@ -4,7 +4,7 @@ import Property from '@/models/Property';
 import { getSessionUser } from '@/utils/getSessionUser';
 import profileDefault from '@/assets/images/profile.png';
 import ProfileProperties from '@/components/ProfileProperties';
-// import { convertToSerializeableObject } from '@/utils/convertToObject';
+import { convertToSerializeableObject } from '@/utils/convertToObject';
 
 const ProfilePage = async () => {
   await connectDB();
@@ -17,12 +17,11 @@ const ProfilePage = async () => {
     throw new Error('User ID is required');
   }
 
-  const properties = await Property.find({ owner: userId }).lean();
-  console.log(properties);
-  
-
-  // const propertiesDocs = await Property.find({ owner: userId }).lean();
-  // const properties = propertiesDocs.map(convertToSerializeableObject);
+  // const properties = await Property.find({ owner: userId }).lean();
+  // console.log(properties);
+  // This is the same as properties before but without the error msg in the browser console (@/utils/convertToObject)
+  const propertiesDocs = await Property.find({ owner: userId }).lean();
+  const properties = propertiesDocs.map(convertToSerializeableObject);
 
   return (
     <section className='bg-blue-50'>

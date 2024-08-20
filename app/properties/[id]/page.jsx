@@ -5,10 +5,23 @@ import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import PropertyDetails from '@/components/PropertyDetails';
 import PropertyImages from '@/components/PropertyImages';
+import { convertToSerializeableObject } from '@/utils/convertToObject';
 
 const PropertyPage = async ({ params }) => {  // params to get the id (or whatever is required)
   await connectDB();
-  const property = await Property.findById(params.id).lean();
+
+  // const property = await Property.findById(params.id).lean();
+  // This is the same as property before but without the error msg in the browser console (@/utils/convertToObject)
+  const propertyDoc = await Property.findById(params.id).lean();
+  const property = convertToSerializeableObject(propertyDoc);
+
+  if (!property) {
+    return (
+      <h1 className='text-center text-2xl font-bold mt-10'>
+        Property Not Found
+      </h1>
+    );
+  }
 
   return (
     <>
