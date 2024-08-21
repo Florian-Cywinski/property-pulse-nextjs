@@ -2,6 +2,8 @@ import '@/assets/styles/globals.css';   // To have Tailwind working // @ points 
 import Navbar from '@/components/Navbar';   // To have it on every page
 import Footer from '@/components/Footer';
 import AuthProvider from '@/components/AuthProvider'; // AuthProvider is a client component which is used in this server component
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata = {
   title: 'PropertyPulse',   // To add a title (tab)
@@ -19,6 +21,7 @@ const MainLayout = ({ children }) => {    // children is the prop pasted in (pag
             {children}
           </main>
           <Footer />
+          <ToastContainer />   {/* It doesn't matter where it is placed, as it is positioned absolute */}
         </body>
       </html>
     </AuthProvider>
