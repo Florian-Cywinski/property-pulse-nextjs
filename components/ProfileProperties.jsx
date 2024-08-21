@@ -2,22 +2,20 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import deleteProperty from '@/app/actions/deleteProperty';
 // import { toast } from 'react-toastify';
-// import deleteProperty from '@/app/actions/deleteProperty';
 
 const ProfileProperties = ({ properties: initialProperties }) => {
   const [properties, setProperties] = useState(initialProperties);
 
   const handleDeleteProperty = async (propertyId) => {
-    const confirmed = window.confirm(
-      'Are you sure you want to delete this property?'
-    );
+    const confirmed = window.confirm('Are you sure you want to delete this property?');
 
     if (!confirmed) return;
 
-    // const deletePropertyById = deleteProperty.bind(null, propertyId);
+    const deletePropertyById = deleteProperty.bind(null, propertyId);
 
-    // await deletePropertyById();
+    await deletePropertyById();
 
     // toast.success('Property Deleted');
 
