@@ -5,6 +5,8 @@ import AuthProvider from '@/components/AuthProvider'; // AuthProvider is a clien
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import 'leaflet/dist/leaflet.css';
+
 export const metadata = {
   title: 'PropertyPulse',   // To add a title (tab)
   description: 'Find The Perfect Rental Property',
