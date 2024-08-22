@@ -1,6 +1,12 @@
+'use client';
+import updateProperty from '@/app/actions/updateProperty';
+import { toast } from 'react-toastify';
+
 const PropertyEditForm = ({ property }) => {
+  const updatePropertyById = updateProperty.bind(null, property._id); // .bind to pass in the id (it creates a bound function with the same body as the orig. fct. -> the .this object of the bound fct. is associated with the specific object) -> .this context is null in this case
+
   return (
-    <form>
+    <form action={updatePropertyById}>
       <h2 className='text-3xl text-center font-semibold mb-6'>Edit Property</h2>
 
       <div className='mb-4'>
@@ -412,6 +418,7 @@ const PropertyEditForm = ({ property }) => {
         <button
           className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline'
           type='submit'
+          onClick={() => toast.success('Property Updated Successfully')}
         >
           Update Property
         </button>
