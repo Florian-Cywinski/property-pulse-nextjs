@@ -1,29 +1,28 @@
 'use client';
-// import {
-//   FacebookShareButton,
-//   TwitterShareButton,
-//   WhatsappShareButton,
-//   EmailShareButton,
-//   FacebookIcon,
-//   TwitterIcon,
-//   WhatsappIcon,
-//   EmailIcon,
-// } from 'react-share';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  EmailShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  WhatsappIcon,
+  EmailIcon,
+} from 'react-share';
 
 const ShareButtons = ({ property }) => {
-  // const shareUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/properties/${property._id}`;
+  const shareUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/properties/${property._id}`;  // NEXT_PUBLIC_DOMAIN is localhost in dev
 
   return (
     <>
-    <div>Share Button</div>
-      {/* <h3 className='text-xl font-bold text-center pt-2'>
+      <h3 className='text-xl font-bold text-center pt-2'>
         Share This Property:
       </h3>
       <div className='flex gap-3 justify-center pb-5'>
         <FacebookShareButton
           url={shareUrl}
-          quote={property.name}
-          hashtag={`#${property.type.replace(/\s/g, '')}ForRent`}
+          quote={property.name} // There are different Optional props for each share button -> https://www.npmjs.com/package/react-share
+          hashtag={`#${property.type.replace(/\s/g, '')}ForRent`} // .replace(/\s/g, '') to get rid of all white spaces -> e.g. #CondoForRent
         >
           <FacebookIcon size={40} round={true} />
         </FacebookShareButton>
@@ -39,7 +38,7 @@ const ShareButtons = ({ property }) => {
         <WhatsappShareButton
           url={shareUrl}
           title={property.name}
-          separator=':: '
+          separator=':: ' // If Whatsapp is installed
         >
           <WhatsappIcon size={40} round={true} />
         </WhatsappShareButton>
@@ -51,7 +50,7 @@ const ShareButtons = ({ property }) => {
         >
           <EmailIcon size={40} round={true} />
         </EmailShareButton>
-      </div> */}
+      </div>
     </>
   );
 };
