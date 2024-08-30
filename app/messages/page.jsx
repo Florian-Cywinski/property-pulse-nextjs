@@ -3,6 +3,7 @@ import Message from '@/models/Message';
 import '@/models/Property'; // To be able to use the populate method
 import { convertToSerializeableObject } from '@/utils/convertToObject';
 import { getSessionUser } from '@/utils/getSessionUser';
+import MessageCard from '@/components/MessageCard';
 
 const MessagePage = async () => {
   await connectDB();
@@ -43,7 +44,7 @@ const MessagePage = async () => {
               <p>You have no messages</p>
             ) : (
               messages.map((message) => (
-                <h3 key={message._id}>{message.name}</h3>
+                <MessageCard key={message._id} message={message} />
               ))
             )}
           </div>
