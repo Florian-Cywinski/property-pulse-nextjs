@@ -1,37 +1,36 @@
 'use client';
-// import { useEffect } from 'react';
-// import { useFormState } from 'react-dom';
-// import { useSession } from 'next-auth/react';
-// import { toast } from 'react-toastify';
-// import addMessage from '@/app/actions/addMessage';
+import { useEffect } from 'react';
+import { useFormState } from 'react-dom';
+import { useSession } from 'next-auth/react';
+import { toast } from 'react-toastify';
+import addMessage from '@/app/actions/addMessage';
 // import SubmitMessageButton from './SubmitMessageButton';
 
 const PropertyContactForm = ({ property }) => {
-  // const { data: session } = useSession();
+  const { data: session } = useSession(); // rename data to session
 
-  // const [state, formAction] = useFormState(addMessage, {});
+  const [state, formAction] = useFormState(addMessage, {});  // addMessage is the action passed in -> it returns an object with the "submitted"-value (true or false) -> this output is in state  // {} is the initial state -> here an empty object  // formAction to run the action (save form input to the collection)
 
-  // useEffect(() => {
-  //   if (state.error) toast.error(state.error);
-  //   if (state.submitted) toast.success('Message sent successfully');
-  // }, [state]);
+  useEffect(() => { // To have a toast
+    if (state.error) toast.error(state.error);  // state.error could come from addMessage.js (action)
+    if (state.submitted) toast.success('Message sent successfully');
+  }, [state]);
 
-  // if (state.submitted) {
-  //   return (
-  //     <p className='text-green-500 mb-4'>
-  //       Your message has been sent successfully
-  //     </p>
-  //   );
-  // }
+  if (state.submitted) {  // state.submitted can be either true or false
+    return (
+      <p className='text-green-500 mb-4'>
+        Your message has been sent successfully
+      </p>
+    );
+  }
 
   return (
-    // session && (
+    session && (  // if session then return the form
       <div className='bg-white p-6 rounded-lg shadow-md'>
         <h3 className='text-xl font-bold mb-6'>Contact Property Manager</h3>
-        {/* <form action={formAction}> */}
-        <form>
+        <form action={formAction}>    {/* addMessage.js (action) */}
           <input
-            type='hidden'
+            type='hidden' // The input field is not visible - it's just to send the required data automatically
             id='property'
             name='property'
             defaultValue={property._id}
@@ -104,11 +103,12 @@ const PropertyContactForm = ({ property }) => {
             ></textarea>
           </div>
           <div>
+            <button type="submit">Submit the Message</button>
             {/* <SubmitMessageButton /> */}
           </div>
         </form>
       </div>
-    // )
+    )
   );
 };
 export default PropertyContactForm;

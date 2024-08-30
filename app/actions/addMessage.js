@@ -3,7 +3,7 @@ import connectDB from '@/config/database';
 import Message from '@/models/Message';
 import { getSessionUser } from '@/utils/getSessionUser';
 
-async function addMessage(previousState, formData) {
+async function addMessage(previousState, formData) {  // previousState is not used in here but it is needed for formData as second argument 
   await connectDB();
 
   const sessionUser = await getSessionUser();
