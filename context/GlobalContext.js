@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useContext, useState, useEffect } from 'react'; // createContext is a function  // useContext is a hook
-import getUnreadMessageCount from '@/app/actions/getUnreadMessageCount';
 import { useSession } from 'next-auth/react';
+import getUnreadMessageCount from '@/app/actions/getUnreadMessageCount';
 
 // Create context
 const GlobalContext = createContext();
@@ -13,7 +13,7 @@ export function GlobalProvider({ children }) {  // children is everything in the
   const { data: session } = useSession();
 
   useEffect(() => {
-    if (session && session.user) {
+    if (session && session.user) {  // Only if there is a session and the user is logged in
       getUnreadMessageCount().then((res) => {
         if (res.count) setUnreadCount(res.count);
       });
