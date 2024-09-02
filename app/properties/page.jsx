@@ -1,6 +1,7 @@
 import PropertyCard from '@/components/PropertyCard';
 import Property from '@/models/Property';
 import connectDB from '@/config/database';
+import Pagination from '@/components/Pagination';
 
 const PropertiesPage = async ({ searchParams: { pageSize = 9, page = 1 } }) => {  // pageSize is the number of items on the page (properties)
   // console.log(properties);
@@ -30,6 +31,13 @@ const PropertiesPage = async ({ searchParams: { pageSize = 9, page = 1 } }) => {
                 <PropertyCard property={property} key={index} />
               ))}
             </div>
+          )}
+          {showPagination && (
+            <Pagination
+              page={parseInt(page)}
+              pageSize={parseInt(pageSize)}
+              totalItems={total}
+            />
           )}
         </div>
       </section>
