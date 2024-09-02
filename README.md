@@ -8,6 +8,8 @@ This is the second iteration of the app/course that uses server actions instead 
 
 The `_theme_files` folder contains the pure HTML files with Tailwind classes.
 
+Try out the app :) https://property-pulse-nextjs-pi.vercel.app/
+
 <img src="/public/images/screen.jpg" />
 
 ## Features
