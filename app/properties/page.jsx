@@ -2,12 +2,20 @@ import PropertyCard from '@/components/PropertyCard';
 import Property from '@/models/Property';
 import connectDB from '@/config/database';
 
-const PropertiesPage = async () => {
+const PropertiesPage = async ({ searchParams: { pageSize = 9, page = 1 } }) => {  // pageSize is the number of items on the page (properties)
   // console.log(properties);
 
   // Fetch Properties
   await connectDB();
-  const properties = await Property.find({}).lean();  // .find({}) to get all properties  // .lean() optimizes query performance by returning plain JS objects instead of mongoose documents (it's just for read only)
+
+  const skip = (page - 1) * pageSize;
+
+  const total = await Property.countDocuments({});
+  // const properties = await Property.find({}).lean();  // .find({}) to get all properties  // .lean() optimizes query performance by returning plain JS objects instead of mongoose documents (it's just for read only)
+  const properties = await Property.find({}).skip(skip).limit(pageSize);
+
+  // Calculate if pagination is needed
+  const showPagination = total > pageSize;
   
   return (
     <>
