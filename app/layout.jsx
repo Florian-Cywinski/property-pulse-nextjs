@@ -5,6 +5,7 @@ import AuthProvider from '@/components/AuthProvider'; // AuthProvider is a clien
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { GlobalProvider } from '@/context/GlobalContext'; // That all components have access to the message count state - Global Context For Message Count
+import 'photoswipe/dist/photoswipe.css';
 
 export const metadata = {
   title: 'PropertyPulse',   // To add a title (tab)
